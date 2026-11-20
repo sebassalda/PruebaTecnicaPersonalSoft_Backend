@@ -1,0 +1,94 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-import-brp-catalog
+      author: jssv
+      changes:
+        - createTable:
+            tableName: brp_import
+            columns:
+              - column:
+                  name: codigo
+                  type: VARCHAR(50)
+              - column:
+                  name: estado
+                  type: VARCHAR(40)
+              - column:
+                  name: tipo_brp
+                  type: VARCHAR(30)
+              - column:
+                  name: matricula_inmobiliaria
+                  type: VARCHAR(100)
+              - column:
+                  name: placa
+                  type: VARCHAR(20)
+              - column:
+                  name: departamento
+                  type: VARCHAR(100)
+              - column:
+                  name: municipio
+                  type: VARCHAR(100)
+              - column:
+                  name: descripcion
+                  type: TEXT
+              - column:
+                  name: precio
+                  type: VARCHAR(30)
+              - column:
+                  name: fecha_asignacion_precio
+                  type: VARCHAR(20)
+              - column:
+                  name: anio_ingesta
+                  type: VARCHAR(4)
+              - column:
+                  name: mes_ingesta
+                  type: VARCHAR(2)
+              - column:
+                  name: dia_ingesta
+                  type: VARCHAR(2)
+
+        - loadData:
+            tableName: brp_import
+            file: db/data/brp_ejemplo.csv
+            encoding: UTF-8
+            separator: ","
+
+        - sql:
+            sql: |
+              INSERT INTO brp (
+                  codigo,
+                  estado,
+                  tipo_brp,
+                  matricula_inmobiliaria,
+                  placa,
+                  departamento,
+                  municipio,
+                  descripcion,
+                  precio,
+                  fecha_asignacion_precio,
+                  fecha_ingesta
+              )
+              SELECT
+                  TRIM(codigo),
+                  CASE
+                      WHEN NULLIF(TRIM(precio), '') IS NULL
+                        OR NULLIF(TRIM(fecha_asignacion_precio), '') IS NULL
+                      THEN 'SIN_PRECIO'
+                      ELSE TRIM(estado)
+                  END,
+                  TRIM(tipo_brp),
+                  NULLIF(TRIM(matricula_inmobiliaria), ''),
+                  NULLIF(TRIM(placa), ''),
+                  NULLIF(TRIM(departamento), ''),
+                  NULLIF(TRIM(municipio), ''),
+                  NULLIF(TRIM(descripcion), ''),
+                  NULLIF(TRIM(precio), '')::NUMERIC(19,2),
+                  NULLIF(TRIM(fecha_asignacion_precio), '')::DATE,
+                  make_date(
+                      TRIM(anio_ingesta)::INTEGER,
+                      TRIM(mes_ingesta)::INTEGER,
+                      TRIM(dia_ingesta)::INTEGER
+                  )
+              FROM brp_import;
+
+        - dropTable:
+            tableName: brp_import
