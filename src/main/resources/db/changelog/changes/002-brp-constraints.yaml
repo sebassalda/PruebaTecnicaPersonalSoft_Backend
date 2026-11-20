@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-brp-business-constraints
+      author: jssv
+      changes:
+        - addNotNullConstraint:
+            tableName: brp
+            columnName: fecha_ingesta
+            columnDataType: DATE
+
+        - sql:
+            sql: |
+              ALTER TABLE brp
+              ADD CONSTRAINT chk_brp_price_date
+              CHECK (
+                (precio IS NULL AND fecha_asignacion_precio IS NULL)
+                OR
+                (precio IS NOT NULL AND fecha_asignacion_precio IS NOT NULL)
+              );
+
+        - sql:
+            sql: |
+              ALTER TABLE brp
+              ADD CONSTRAINT chk_brp_identification
+              CHECK (
+                (
+                  tipo_brp IN ('APARTAMENTO', 'CASA', 'LOCAL', 'LOTE')
+                  AND matricula_inmobiliaria IS NOT NULL
+                  AND placa IS NULL
+                )
+                OR
+                (
+                  tipo_brp = 'VEHICULO'
+                  AND placa IS NOT NULL
+                  AND matricula_inmobiliaria IS NULL
+                )
+                OR
+                (
+                  tipo_brp = 'MAQUINARIA'
+                  AND placa IS NULL
+                  AND matricula_inmobiliaria IS NULL
+                )
+              );
+
+        - addUniqueConstraint:
+            tableName: brp
+            columnNames: codigo, fecha_ingesta
+            constraintName: uk_brp_codigo_fecha_ingesta

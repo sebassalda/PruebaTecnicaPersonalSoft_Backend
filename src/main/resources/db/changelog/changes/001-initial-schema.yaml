@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-brp-table
+      author: jssv
+      changes:
+        - createTable:
+            tableName: brp
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: codigo
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: estado
+                  type: VARCHAR(40)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: tipo_brp
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: matricula_inmobiliaria
+                  type: VARCHAR(100)
+
+              - column:
+                  name: placa
+                  type: VARCHAR(20)
+
+              - column:
+                  name: departamento
+                  type: VARCHAR(100)
+
+              - column:
+                  name: municipio
+                  type: VARCHAR(100)
+
+              - column:
+                  name: descripcion
+                  type: TEXT
+
+              - column:
+                  name: precio
+                  type: NUMERIC(19,2)
+
+              - column:
+                  name: fecha_asignacion_precio
+                  type: DATE
+
+              - column:
+                  name: fecha_ingesta
+                  type: DATE
+
+        - createIndex:
+            tableName: brp
+            indexName: idx_brp_codigo_ingesta
+            columns:
+              - column:
+                  name: codigo
+              - column:
+                  name: fecha_ingesta

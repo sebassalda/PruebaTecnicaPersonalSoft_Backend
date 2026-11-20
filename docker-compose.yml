@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: brp-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-brp_management}
+      POSTGRES_USER: ${DB_USER:-brp_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-brp_dev_password}
+    ports:
+      - "5433:5432"
+    volumes:
+      - brp_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  brp_postgres_data:
