@@ -4,6 +4,7 @@ import com.jssv.brp_offer_management.security.entity.UserModuleEntity;
 import com.jssv.brp_offer_management.security.entity.UserModuleId;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -29,5 +30,14 @@ public interface UserModuleRepository
     void deleteByUsuarioIdAndModuloId(
             Long usuarioId,
             Long moduloId
+    );
+
+    @Modifying
+    @Query("""
+            DELETE FROM UserModuleEntity um
+            WHERE um.usuarioId = :usuarioId
+            """)
+    int deleteAllByUsuarioId(
+            @Param("usuarioId") Long usuarioId
     );
 }
