@@ -12,6 +12,7 @@ import com.jssv.brp_offer_management.security.service.UserModuleCommandService;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,7 @@ public class UserModuleCommandServiceImpl
     private final UserRepository userRepository;
     private final ModuleRepository moduleRepository;
     private final UserModuleRepository userModuleRepository;
+    private final JdbcTemplate jdbcTemplate;
 
     @Override
     @Transactional
@@ -101,6 +103,11 @@ public class UserModuleCommandServiceImpl
             validModules.add(module);
         }
 
+        // Snapshot anterior: la auditoría registra únicamente cambios efectivos.
+        Set<String> previousCodes = new HashSet<>(
+                userModuleRepository.findModuleCodesByUserId(userId)
+        );
+
         // Eliminar asignaciones anteriores.
         userModuleRepository.deleteAllByUsuarioId(userId);
 
@@ -124,6 +131,17 @@ public class UserModuleCommandServiceImpl
                 .sorted()
                 .toList();
 
+        for (String code : previousCodes) {
+            if (!uniqueCodes.contains(code)) {
+                audit(userId, code, "REVOCADO", authenticatedUserId);
+            }
+        }
+        for (String code : uniqueCodes) {
+            if (!previousCodes.contains(code)) {
+                audit(userId, code, "ASIGNADO", authenticatedUserId);
+            }
+        }
+
         return new UserResponse(
                 user.getId(),
                 user.getNombre(),
@@ -133,4 +151,12 @@ public class UserModuleCommandServiceImpl
                 updatedCodes
         );
     }
+    private void audit(Long userId, String moduleCode, String action, Long actorId) {
+        jdbcTemplate.update("""
+                INSERT INTO auditoria_usuario_modulo
+                    (usuario_id, modulo_codigo, accion, realizado_por, fecha)
+                VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+                """, userId, moduleCode, action, actorId);
+    }
+
 }

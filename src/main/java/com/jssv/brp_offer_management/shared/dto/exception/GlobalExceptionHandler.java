@@ -6,6 +6,8 @@ import com.jssv.brp_offer_management.shared.dto.ApiErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import jakarta.persistence.OptimisticLockException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -83,6 +85,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
                 .body(response);
+    }
+
+    @ExceptionHandler({ObjectOptimisticLockingFailureException.class, OptimisticLockException.class})
+    public ResponseEntity<ApiErrorResponse> handleConcurrentUpdate(
+            Exception exception, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.CONFLICT;
+        return ResponseEntity.status(status).body(new ApiErrorResponse(
+                OffsetDateTime.now(), status.value(), status.getReasonPhrase(),
+                "La oferta fue modificada por otro usuario; actualice y vuelva a intentar",
+                request.getRequestURI()));
     }
 
     @ExceptionHandler(Exception.class)

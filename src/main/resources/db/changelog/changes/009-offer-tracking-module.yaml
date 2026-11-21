@@ -1,0 +1,25 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: 009-insert-offer-tracking-module
+      author: jssv
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+            - sqlCheck:
+                expectedResult: "1"
+                sql: >
+                  SELECT COUNT(*)
+                  FROM modulo
+                  WHERE codigo = 'OFFER_TRACKING'
+      changes:
+        - insert:
+            tableName: modulo
+            columns:
+              - column:
+                  name: codigo
+                  value: OFFER_TRACKING
+              - column:
+                  name: nombre
+                  value: Seguimiento de ofertas

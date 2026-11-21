@@ -15,6 +15,6 @@ spring:
 
 app:
   jwt:
-    secret: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    secret: "BRP_TEST_ONLY_JWT_SECRET_2026_ABCDEFGHIJKLMNOPQRSTUVWXYZ_123456789"
     expiration-minutes: 60
     issuer: brp-offer-management

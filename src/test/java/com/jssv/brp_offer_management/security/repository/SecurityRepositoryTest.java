@@ -52,7 +52,7 @@ class SecurityRepositoryTest {
 
     @Test
     void shouldFindAllConfiguredModules() {
-        assertEquals(5, moduleRepository.count());
+        assertEquals(6, moduleRepository.count());
 
         assertTrue(moduleRepository
                 .findByCodigo("BRP_CATALOG")
@@ -72,6 +72,10 @@ class SecurityRepositoryTest {
 
         assertTrue(moduleRepository
                 .findByCodigo("USER_MANAGEMENT")
+                .isPresent());
+
+        assertTrue(moduleRepository
+                .findByCodigo("OFFER_TRACKING")
                 .isPresent());
     }
 
