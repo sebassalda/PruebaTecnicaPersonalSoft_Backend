@@ -39,7 +39,7 @@ class UserStatusIntegrationTest {
 
     @Test
     void shouldDeactivateUser() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -62,7 +62,7 @@ class UserStatusIntegrationTest {
 
     @Test
     void shouldReactivateUser() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -89,7 +89,7 @@ class UserStatusIntegrationTest {
 
     @Test
     void shouldRejectSelfDeactivation() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         String token = generateToken(
@@ -109,7 +109,7 @@ class UserStatusIntegrationTest {
 
     @Test
     void shouldReturn404ForMissingUser() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         String token = generateToken(
@@ -127,7 +127,7 @@ class UserStatusIntegrationTest {
 
     @Test
     void shouldRejectNullStatus() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -185,7 +185,7 @@ class UserStatusIntegrationTest {
     void shouldRejectExistingJwtAfterDeactivation()
             throws Exception {
 
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -233,6 +233,15 @@ class UserStatusIntegrationTest {
         assertFalse(isActive(targetId));
     }
 
+    private Long createAdminUser() {
+        Long id = createUser();
+        jdbcTemplate.update(
+                "UPDATE usuario SET rol_id = (SELECT id FROM rol WHERE nombre = 'ADMINISTRADOR') WHERE id = ?",
+                id
+        );
+        return id;
+    }
+
     private Long createUser() {
         return jdbcTemplate.queryForObject(
                 """
@@ -275,10 +284,14 @@ class UserStatusIntegrationTest {
                 userId
         );
 
+        String role = jdbcTemplate.queryForObject(
+                "SELECT r.nombre FROM usuario u JOIN rol r ON r.id = u.rol_id WHERE u.id = ?",
+                String.class, userId
+        );
         return jwtService.generateToken(
                 userId,
                 email,
-                "ANALISTA",
+                role,
                 modules
         );
     }

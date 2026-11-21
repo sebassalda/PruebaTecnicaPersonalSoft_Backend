@@ -11,7 +11,11 @@ public interface BrpService {
 
     Page<BrpResponse> findAll(Pageable pageable);
 
+    Page<BrpResponse> findAll(Pageable pageable, boolean onlyAvailable);
+
     BrpResponse findById(Long id);
+
+    BrpResponse findById(Long id, boolean onlyAvailable);
 
     Optional<LocalDate> getLatestIngestionDate();
 }

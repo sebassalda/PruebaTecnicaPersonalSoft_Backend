@@ -28,3 +28,6 @@ databaseChangeLog:
 
   - include:
       file: db/changelog/changes/010-module-permission-audit.yaml
+
+  - include:
+      file: db/changelog/changes/011-offer-attachments.yaml

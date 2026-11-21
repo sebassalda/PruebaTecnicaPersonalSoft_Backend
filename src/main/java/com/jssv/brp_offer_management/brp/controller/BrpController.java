@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 
 @RestController
 @RequestMapping("/api/brps")
@@ -28,10 +29,12 @@ public class BrpController {
     )
     public ResponseEntity<Page<BrpResponse>> findAll(
             @PageableDefault(size = 10, sort = "codigo")
-            Pageable pageable
+            Pageable pageable,
+            Authentication authentication
     ) {
         return ResponseEntity.ok(
-                brpService.findAll(pageable)
+                brpService.findAll(pageable, authentication.getAuthorities().stream()
+                        .anyMatch(a -> "ROLE_RADICADOR".equals(a.getAuthority())))
         );
     }
 
@@ -52,10 +55,12 @@ public class BrpController {
             "@moduleSecurity.hasAccess(authentication, 'BRP_CATALOG')"
     )
     public ResponseEntity<BrpResponse> findById(
-            @PathVariable Long id
+            @PathVariable Long id,
+            Authentication authentication
     ) {
         return ResponseEntity.ok(
-                brpService.findById(id)
+                brpService.findById(id, authentication.getAuthorities().stream()
+                        .anyMatch(a -> "ROLE_RADICADOR".equals(a.getAuthority())))
         );
     }
 }

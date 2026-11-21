@@ -20,7 +20,7 @@ public interface BrpRepository extends JpaRepository<BrpEntity, Long> {
                 SELECT 1
                 FROM BrpEntity newer
                 WHERE newer.codigo = b.codigo
-                  AND newer.fechaIngesta > b.fechaIngesta
+                  AND (newer.fechaIngesta > b.fechaIngesta OR (newer.fechaIngesta = b.fechaIngesta AND newer.id > b.id))
             )
             """,
             countQuery = """
@@ -30,7 +30,7 @@ public interface BrpRepository extends JpaRepository<BrpEntity, Long> {
                 SELECT 1
                 FROM BrpEntity newer
                 WHERE newer.codigo = b.codigo
-                  AND newer.fechaIngesta > b.fechaIngesta
+                  AND (newer.fechaIngesta > b.fechaIngesta OR (newer.fechaIngesta = b.fechaIngesta AND newer.id > b.id))
             )
             """
     )
@@ -44,10 +44,43 @@ public interface BrpRepository extends JpaRepository<BrpEntity, Long> {
               SELECT 1
               FROM BrpEntity newer
               WHERE newer.codigo = b.codigo
-                AND newer.fechaIngesta > b.fechaIngesta
+                AND (newer.fechaIngesta > b.fechaIngesta OR (newer.fechaIngesta = b.fechaIngesta AND newer.id > b.id))
           )
         """)
     Optional<BrpEntity> findLatestById(@Param("id") Long id);
+
+    @Query(value = """
+        SELECT b FROM BrpEntity b
+        WHERE b.estado = 'DISPONIBLE'
+          AND NOT EXISTS (
+            SELECT 1 FROM BrpEntity newer
+            WHERE newer.codigo = b.codigo
+              AND (newer.fechaIngesta > b.fechaIngesta
+                   OR (newer.fechaIngesta = b.fechaIngesta AND newer.id > b.id))
+          )
+        """, countQuery = """
+        SELECT COUNT(b) FROM BrpEntity b
+        WHERE b.estado = 'DISPONIBLE'
+          AND NOT EXISTS (
+            SELECT 1 FROM BrpEntity newer
+            WHERE newer.codigo = b.codigo
+              AND (newer.fechaIngesta > b.fechaIngesta
+                   OR (newer.fechaIngesta = b.fechaIngesta AND newer.id > b.id))
+          )
+        """)
+    Page<BrpEntity> findLatestAvailableCatalog(Pageable pageable);
+
+    @Query("""
+        SELECT b FROM BrpEntity b
+        WHERE b.id = :id AND b.estado = 'DISPONIBLE'
+          AND NOT EXISTS (
+            SELECT 1 FROM BrpEntity newer
+            WHERE newer.codigo = b.codigo
+              AND (newer.fechaIngesta > b.fechaIngesta
+                   OR (newer.fechaIngesta = b.fechaIngesta AND newer.id > b.id))
+          )
+        """)
+    Optional<BrpEntity> findLatestAvailableById(@Param("id") Long id);
 
     @Query("""
         SELECT MAX(b.fechaIngesta)

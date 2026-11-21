@@ -25,4 +25,6 @@ app:
     secret: ${APP_JWT_SECRET}
     expiration-minutes: 60
     issuer: brp-offer-management
+    attachments:
+      directory: ${APP_ATTACHMENTS_DIR:./data/attachments}
 

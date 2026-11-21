@@ -34,7 +34,7 @@ public class UserController {
 
     @GetMapping
     @PreAuthorize(
-            "@moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
+            "hasAuthority('ROLE_ADMINISTRADOR') and @moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
     )
     public Page<UserResponse> findAll(
             @PageableDefault(size = 10, sort = "id")
@@ -45,7 +45,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @PreAuthorize(
-            "@moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
+            "hasAuthority('ROLE_ADMINISTRADOR') and @moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
     )
     public UserResponse findById(@PathVariable Long id) {
         return userQueryService.findById(id);
@@ -54,7 +54,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize(
-            "@moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
+            "hasAuthority('ROLE_ADMINISTRADOR') and @moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
     )
     public UserResponse create(
             @Valid @RequestBody CreateUserRequest request
@@ -65,7 +65,7 @@ public class UserController {
 
     @PatchMapping("/{id}/status")
     @PreAuthorize(
-            "@moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
+            "hasAuthority('ROLE_ADMINISTRADOR') and @moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
     )
     public UserResponse updateStatus(
             @PathVariable Long id,
@@ -85,7 +85,7 @@ public class UserController {
 
     @PutMapping("/{id}/modules")
     @PreAuthorize(
-            "@moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
+            "hasAuthority('ROLE_ADMINISTRADOR') and @moduleSecurity.hasAccess(authentication, 'USER_MANAGEMENT')"
     )
     public UserResponse replaceModules(
             @PathVariable Long id,

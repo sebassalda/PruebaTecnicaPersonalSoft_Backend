@@ -40,7 +40,7 @@ class UserModuleIntegrationTest {
 
     @Test
     void shouldAssignModules() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -69,7 +69,7 @@ class UserModuleIntegrationTest {
 
     @Test
     void shouldReplaceExistingModules() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -99,7 +99,7 @@ class UserModuleIntegrationTest {
 
     @Test
     void shouldRevokeAllModules() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -122,7 +122,7 @@ class UserModuleIntegrationTest {
     void shouldRejectUnknownModuleWithoutChangingPermissions()
             throws Exception {
 
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -149,7 +149,7 @@ class UserModuleIntegrationTest {
 
     @Test
     void shouldRejectDuplicateModules() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -172,7 +172,7 @@ class UserModuleIntegrationTest {
 
     @Test
     void shouldRejectNullModules() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -191,7 +191,7 @@ class UserModuleIntegrationTest {
 
     @Test
     void shouldReturn404ForMissingUser() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         String token = generateToken(
@@ -210,7 +210,7 @@ class UserModuleIntegrationTest {
 
     @Test
     void shouldRejectSelfRevocation() throws Exception {
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         String token = generateToken(
@@ -273,7 +273,7 @@ class UserModuleIntegrationTest {
     void shouldRejectExistingJwtAfterModuleRevocation()
             throws Exception {
 
-        Long adminId = createUser();
+        Long adminId = createAdminUser();
         assignModule(adminId, "USER_MANAGEMENT");
 
         Long targetId = createUser();
@@ -336,6 +336,15 @@ class UserModuleIntegrationTest {
         );
     }
 
+    private Long createAdminUser() {
+        Long id = createUser();
+        jdbcTemplate.update(
+                "UPDATE usuario SET rol_id = (SELECT id FROM rol WHERE nombre = 'ADMINISTRADOR') WHERE id = ?",
+                id
+        );
+        return id;
+    }
+
     private Long createUser() {
         return jdbcTemplate.queryForObject(
                 """
@@ -392,10 +401,14 @@ class UserModuleIntegrationTest {
                 userId
         );
 
+        String role = jdbcTemplate.queryForObject(
+                "SELECT r.nombre FROM usuario u JOIN rol r ON r.id = u.rol_id WHERE u.id = ?",
+                String.class, userId
+        );
         return jwtService.generateToken(
                 userId,
                 email,
-                "ANALISTA",
+                role,
                 modules
         );
     }
