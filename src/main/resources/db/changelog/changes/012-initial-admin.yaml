@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 012-initial-admin
+      author: jssv
+      validCheckSum:
+        - "9:3cb98386c43a8d05d9db2b3d77d5f08e"
+      context: bootstrap-admin
+      preConditions:
+        - onFail: MARK_RAN
+        - sqlCheck:
+            expectedResult: "0"
+            sql: "SELECT COUNT(*) FROM usuario u JOIN rol r ON r.id = u.rol_id WHERE r.nombre = 'ADMINISTRADOR' AND u.activo = true"
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: |
+              INSERT INTO usuario (nombre, email, password_hash, activo, rol_id)
+              SELECT 'Administrador inicial', '${adminEmail}', '${adminPasswordHash}', true, r.id
+              FROM rol r WHERE r.nombre = 'ADMINISTRADOR'
+              AND NOT EXISTS (SELECT 1 FROM usuario WHERE LOWER(email) = LOWER('${adminEmail}'));
+              INSERT INTO usuario_modulo (usuario_id, modulo_id)
+              SELECT u.id, m.id FROM usuario u CROSS JOIN modulo m
+              WHERE LOWER(u.email) = LOWER('${adminEmail}') AND u.activo = true
+              AND NOT EXISTS (SELECT 1 FROM usuario_modulo um WHERE um.usuario_id = u.id AND um.modulo_id = m.id);
