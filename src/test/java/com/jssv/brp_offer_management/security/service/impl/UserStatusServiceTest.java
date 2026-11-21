@@ -135,4 +135,19 @@ class UserStatusServiceTest {
 
         verify(userRepository, never()).save(any());
     }
+    @Test
+    void shouldRejectDeactivatingLastActiveAdministrator() {
+        user.getRol().setNombre("ADMINISTRADOR");
+        when(userRepository.findById(10L)).thenReturn(Optional.of(user));
+        when(userRepository.countByActivoTrueAndRol_Nombre("ADMINISTRADOR"))
+                .thenReturn(1L);
+
+        ResponseStatusException exception = assertThrows(
+                ResponseStatusException.class,
+                () -> service.updateStatus(10L, false, 1L)
+        );
+        assertEquals(HttpStatus.CONFLICT, exception.getStatusCode());
+        verify(userRepository, never()).saveAndFlush(any());
+    }
+
 }

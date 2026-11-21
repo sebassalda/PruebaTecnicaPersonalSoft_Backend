@@ -128,6 +128,15 @@ public class UserCommandServiceImpl implements UserCommandService {
                         "Usuario no encontrado"
                 ));
 
+        if (!activo && user.isActivo()
+                && "ADMINISTRADOR".equals(user.getRol().getNombre())
+                && userRepository.countByActivoTrueAndRol_Nombre("ADMINISTRADOR") <= 1) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "No se puede desactivar al último administrador activo"
+            );
+        }
+
         user.setActivo(activo);
 
         UserEntity updated = userRepository.saveAndFlush(user);

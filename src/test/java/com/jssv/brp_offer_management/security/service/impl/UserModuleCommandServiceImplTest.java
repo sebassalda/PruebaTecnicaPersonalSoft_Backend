@@ -40,6 +40,9 @@ class UserModuleCommandServiceImplTest {
     @Mock
     private UserModuleRepository userModuleRepository;
 
+    @Mock
+    private org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
+
     @InjectMocks
     private UserModuleCommandServiceImpl service;
 

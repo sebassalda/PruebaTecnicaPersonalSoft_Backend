@@ -73,15 +73,5 @@ public interface OfferRepository
             Pageable pageable
     );
 
-    @Query("""
-    SELECT DISTINCT o
-    FROM OfferEntity o
-    LEFT JOIN FETCH o.oferentes a
-    LEFT JOIN FETCH a.pagos
-    WHERE o.id = :offerId
-    """)
-    Optional<OfferEntity> findWithApplicantsAndPayments(
-            @Param("offerId") Long offerId
-    );
 
 }
