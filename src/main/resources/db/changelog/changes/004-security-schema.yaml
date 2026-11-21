@@ -1,0 +1,120 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-security-schema
+      author: jssv
+      changes:
+        - createTable:
+            tableName: rol
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nombre
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+        - createTable:
+            tableName: usuario
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nombre
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password_hash
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: activo
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rol_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_usuario_rol
+                    references: rol(id)
+
+        - createTable:
+            tableName: modulo
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: codigo
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: nombre
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: usuario_modulo
+            columns:
+              - column:
+                  name: usuario_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_usuario_modulo_usuario
+                    references: usuario(id)
+              - column:
+                  name: modulo_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_usuario_modulo_modulo
+                    references: modulo(id)
+
+        - addPrimaryKey:
+            tableName: usuario_modulo
+            columnNames: usuario_id, modulo_id
+            constraintName: pk_usuario_modulo
+
+        - createIndex:
+            tableName: usuario
+            indexName: idx_usuario_rol
+            columns:
+              - column:
+                  name: rol_id
+
+        - createIndex:
+            tableName: usuario_modulo
+            indexName: idx_usuario_modulo_modulo
+            columns:
+              - column:
+                  name: modulo_id
