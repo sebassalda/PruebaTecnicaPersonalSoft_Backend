@@ -59,12 +59,13 @@ class ModuleQueryIntegrationTest {
                 .andExpect(content().contentTypeCompatibleWith(
                         org.springframework.http.MediaType.APPLICATION_JSON
                 ))
-                .andExpect(jsonPath("$.length()").value(5))
+                .andExpect(jsonPath("$.length()").value(6))
                 .andExpect(jsonPath("$[0].codigo").value("BRP_CATALOG"))
                 .andExpect(jsonPath("$[1].codigo").value("OFFER_APPROVAL"))
                 .andExpect(jsonPath("$[2].codigo").value("OFFER_MANAGEMENT"))
                 .andExpect(jsonPath("$[3].codigo").value("OFFER_REGISTRATION"))
-                .andExpect(jsonPath("$[4].codigo").value("USER_MANAGEMENT"))
+                .andExpect(jsonPath("$[4].codigo").value("OFFER_TRACKING"))
+                .andExpect(jsonPath("$[5].codigo").value("USER_MANAGEMENT"))
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].nombre").isString());
     }
