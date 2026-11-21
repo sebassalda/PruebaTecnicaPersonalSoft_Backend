@@ -161,4 +161,29 @@ class BrpServiceImplTest {
 
         verify(brpRepository).findLatestIngestionDate();
     }
+    @Test
+    void shouldReturnOnlyAvailableCatalogForRadicador() {
+        Pageable pageable = PageRequest.of(0, 10);
+        when(brpRepository.findLatestAvailableCatalog(pageable))
+                .thenReturn(new PageImpl<>(List.of(brp), pageable, 1));
+        Page<BrpResponse> result = brpService.findAll(pageable, true);
+        assertEquals(1, result.getTotalElements());
+        verify(brpRepository).findLatestAvailableCatalog(pageable);
+        verify(brpRepository, never()).findLatestCatalog(pageable);
+    }
+
+    @Test
+    void shouldHideUnavailableBrpForRadicador() {
+        when(brpRepository.findLatestAvailableById(9L)).thenReturn(Optional.empty());
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class,
+                () -> brpService.findById(9L, true));
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
+    }
+
+    @Test
+    void shouldAllowAvailableBrpForRadicador() {
+        when(brpRepository.findLatestAvailableById(1L)).thenReturn(Optional.of(brp));
+        assertEquals("BRP-0001", brpService.findById(1L, true).codigo());
+    }
+
 }

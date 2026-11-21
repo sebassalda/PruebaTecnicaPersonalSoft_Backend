@@ -46,3 +46,5 @@ out/
 uploads/
 logs/
 *.log
+
+data/

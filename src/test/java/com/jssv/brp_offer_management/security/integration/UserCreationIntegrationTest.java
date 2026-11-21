@@ -218,6 +218,7 @@ class UserCreationIntegrationTest {
     private String authorizedToken() {
 
         Long userId = createTestUser();
+        jdbcTemplate.update("UPDATE usuario SET rol_id = (SELECT id FROM rol WHERE nombre = 'ADMINISTRADOR') WHERE id = ?", userId);
 
         jdbcTemplate.update(
                 """
@@ -235,7 +236,7 @@ class UserCreationIntegrationTest {
         return jwtService.generateToken(
                 userId,
                 getEmail(userId),
-                "ANALISTA",
+                "ADMINISTRADOR",
                 List.of("USER_MANAGEMENT")
         );
     }

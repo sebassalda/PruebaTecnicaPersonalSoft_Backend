@@ -31,6 +31,12 @@ public class BrpServiceImpl implements BrpService {
     }
 
     @Override
+    public Page<BrpResponse> findAll(Pageable pageable, boolean onlyAvailable) {
+        return (onlyAvailable ? brpRepository.findLatestAvailableCatalog(pageable)
+                : brpRepository.findLatestCatalog(pageable)).map(this::toResponse);
+    }
+
+    @Override
     public BrpResponse findById(Long id) {
         BrpEntity brp = brpRepository.findLatestById(id)
                 .orElseThrow(() -> new ResponseStatusException(
@@ -38,6 +44,15 @@ public class BrpServiceImpl implements BrpService {
                         "BRP no encontrado"
                 ));
 
+        return toResponse(brp);
+    }
+
+    @Override
+    public BrpResponse findById(Long id, boolean onlyAvailable) {
+        BrpEntity brp = (onlyAvailable
+                ? brpRepository.findLatestAvailableById(id)
+                : brpRepository.findLatestById(id))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "BRP no encontrado"));
         return toResponse(brp);
     }
 

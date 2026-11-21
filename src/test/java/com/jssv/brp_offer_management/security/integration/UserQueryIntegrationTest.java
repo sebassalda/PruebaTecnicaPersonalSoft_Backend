@@ -63,6 +63,7 @@ class UserQueryIntegrationTest {
             throws Exception {
 
         Long userId = createUser();
+        jdbcTemplate.update("UPDATE usuario SET rol_id = (SELECT id FROM rol WHERE nombre = 'ADMINISTRADOR') WHERE id = ?", userId);
         assignModule(userId, "USER_MANAGEMENT");
 
         String token = generateToken(
@@ -89,6 +90,7 @@ class UserQueryIntegrationTest {
             throws Exception {
 
         Long userId = createUser();
+        jdbcTemplate.update("UPDATE usuario SET rol_id = (SELECT id FROM rol WHERE nombre = 'ADMINISTRADOR') WHERE id = ?", userId);
         assignModule(userId, "USER_MANAGEMENT");
 
         String token = generateToken(
@@ -105,7 +107,7 @@ class UserQueryIntegrationTest {
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(userId))
-                .andExpect(jsonPath("$.role").value("ANALISTA"))
+                .andExpect(jsonPath("$.role").value("ADMINISTRADOR"))
                 .andExpect(jsonPath("$.modules",
                         hasItem("USER_MANAGEMENT")))
                 .andExpect(jsonPath("$.password").doesNotExist())
@@ -115,6 +117,7 @@ class UserQueryIntegrationTest {
     @Test
     void shouldReturn404ForMissingUser() throws Exception {
         Long userId = createUser();
+        jdbcTemplate.update("UPDATE usuario SET rol_id = (SELECT id FROM rol WHERE nombre = 'ADMINISTRADOR') WHERE id = ?", userId);
         assignModule(userId, "USER_MANAGEMENT");
 
         String token = generateToken(
@@ -184,10 +187,14 @@ class UserQueryIntegrationTest {
                 userId
         );
 
+        String role = jdbcTemplate.queryForObject(
+                "SELECT r.nombre FROM usuario u JOIN rol r ON r.id = u.rol_id WHERE u.id = ?",
+                String.class, userId
+        );
         return jwtService.generateToken(
                 userId,
                 email,
-                "ANALISTA",
+                role,
                 modules
         );
     }
