@@ -13,43 +13,28 @@ API REST para consultar un catálogo de Bienes Recibidos en Pago (BRP), radicar 
 
 ## Configuración inicial (Docker Compose)
 
-En la raíz del repositorio:
-
-1. Copia `.env.example` a `.env` y reemplaza `DB_PASSWORD` y `APP_JWT_SECRET` por valores propios. No publiques el contenido de `.env`.
-2. Copia `backend-secrets.env.example` a `backend-secrets.env` y reemplaza `APP_ADMIN_PASSWORD_HASH` por un hash BCrypt válido de la contraseña elegida para el administrador inicial. Este archivo **no debe versionarse**.
-3. Comprueba `APP_ADMIN_EMAIL` en `.env` (valor predeterminado: `admin@brp.local`). La creación del administrador mediante Liquibase está pensada para una **base de datos nueva**; cambiar el hash después no cambia automáticamente la contraseña de un administrador ya creado.
-### Configuración del administrador de demostración
-
-El proyecto incluye un hash BCrypt de demostración en `backend-secrets.env.example`.
-
-Antes de iniciar la aplicación, ejecutar desde la raíz del backend:
-
-```powershell
-Copy-Item .\backend-secrets.env.example .\backend-secrets.env
-```
-
-La configuración crea el administrador inicial con el correo `admin@brp.local` y la contraseña de demostración proporcionada para la evaluación.
-
-El archivo `backend-secrets.env` permanece excluido del control de versiones.
-
-**Importante:** la contraseña debe proporcionarse al evaluador junto con las instrucciones de entrega. El hash BCrypt no permite recuperar directamente la contraseña original.
-
-Estas credenciales son exclusivas de la prueba técnica y no deben utilizarse en producción.
-4. Verifica la configuración y levanta los servicios:
+Desde la raíz del repositorio, prepara los dos archivos locales de configuración:
 
 ```powershell
 Copy-Item .env.example .env
 Copy-Item backend-secrets.env.example backend-secrets.env
-# Editar ambos archivos locales con valores reales antes de continuar.
+```
+
+1. Edita `.env`: sustituye `DB_PASSWORD` y `APP_JWT_SECRET` por valores propios. El secreto JWT debe ser suficientemente largo y compatible con la configuración de la aplicación. No publiques `.env`.
+2. Revisa `backend-secrets.env`: contiene el hash BCrypt del administrador de demostración. Para utilizar una contraseña diferente, reemplaza `APP_ADMIN_PASSWORD_HASH` por un hash BCrypt válido de la nueva contraseña. No publiques este archivo.
+3. El correo predeterminado del administrador es `admin@brp.local` (`APP_ADMIN_EMAIL`). Docker Compose activa los contextos Liquibase `bootstrap-admin,demo-users`, que crean las cuentas iniciales **en una base de datos nueva**. Cambiar el hash después de crear al administrador no actualiza su contraseña automáticamente.
+4. Valida la configuración e inicia los contenedores:
+
+```powershell
 docker compose config --quiet
 docker compose up --build -d
 docker compose ps
 docker compose logs --tail=100 backend
 ```
 
-API: `http://localhost:8080`.
+La API estará disponible en `http://localhost:8080`.
 
-**Importante:** `docker-compose.yml` utiliza `.env` para interpolar las variables y `backend-secrets.env` como `env_file` del backend. Por ello, ambos son necesarios. No uses el texto de ejemplo como secreto o contraseña real. Para un secreto JWT utiliza un valor aleatorio suficientemente largo, compatible con la configuración de la aplicación; no reutilices credenciales de producción.
+**Importante:** `docker-compose.yml` lee `.env` para interpolar variables y carga `backend-secrets.env` mediante `env_file` del servicio backend. Ambos archivos son necesarios. Las credenciales de demostración son solo para evaluación y nunca deben reutilizarse en producción.
 
 ### Persistencia y puertos
 
@@ -182,17 +167,14 @@ Estas credenciales son exclusivas de la demostración y no deben utilizarse en p
 
 ### Inicialización de usuarios
 
-Para crear el administrador y los usuarios de demostración en una base de datos nueva, configurar:
-
-```yaml
-APP_LIQUIBASE_CONTEXTS: bootstrap-admin,demo-users
-```
+Para crear el administrador y los usuarios de demostración en una base de datos nueva, Docker Compose ya configura `APP_LIQUIBASE_CONTEXTS=bootstrap-admin,demo-users`. No es necesario agregar esa variable manualmente al ejecutar con Compose.
 
 El administrador inicial se crea mediante `012-initial-admin.yaml`, utilizando el correo configurado en `APP_ADMIN_EMAIL` y el hash BCrypt definido en `APP_ADMIN_PASSWORD_HASH`.
 
 Los otros tres usuarios se crean automáticamente mediante `013-demo-users.yaml`, con sus respectivos roles y módulos.
 
-Los datos se insertan mediante Liquibase y no requieren crear usuarios manualmente desde Angular.</Writing
+Los datos se insertan mediante Liquibase y no requieren crear usuarios manualmente desde Angular.
+
 ## Pruebas automatizadas
 
 ```powershell
