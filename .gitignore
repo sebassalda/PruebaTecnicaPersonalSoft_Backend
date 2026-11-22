@@ -48,3 +48,6 @@ logs/
 *.log
 
 data/
+
+# Local backend secrets
+backend-secrets.env
