@@ -18,6 +18,23 @@ En la raíz del repositorio:
 1. Copia `.env.example` a `.env` y reemplaza `DB_PASSWORD` y `APP_JWT_SECRET` por valores propios. No publiques el contenido de `.env`.
 2. Copia `backend-secrets.env.example` a `backend-secrets.env` y reemplaza `APP_ADMIN_PASSWORD_HASH` por un hash BCrypt válido de la contraseña elegida para el administrador inicial. Este archivo **no debe versionarse**.
 3. Comprueba `APP_ADMIN_EMAIL` en `.env` (valor predeterminado: `admin@brp.local`). La creación del administrador mediante Liquibase está pensada para una **base de datos nueva**; cambiar el hash después no cambia automáticamente la contraseña de un administrador ya creado.
+### Configuración del administrador de demostración
+
+El proyecto incluye un hash BCrypt de demostración en `backend-secrets.env.example`.
+
+Antes de iniciar la aplicación, ejecutar desde la raíz del backend:
+
+```powershell
+Copy-Item .\backend-secrets.env.example .\backend-secrets.env
+```
+
+La configuración crea el administrador inicial con el correo `admin@brp.local` y la contraseña de demostración proporcionada para la evaluación.
+
+El archivo `backend-secrets.env` permanece excluido del control de versiones.
+
+**Importante:** la contraseña debe proporcionarse al evaluador junto con las instrucciones de entrega. El hash BCrypt no permite recuperar directamente la contraseña original.
+
+Estas credenciales son exclusivas de la prueba técnica y no deben utilizarse en producción.
 4. Verifica la configuración y levanta los servicios:
 
 ```powershell
@@ -152,10 +169,30 @@ Adjunto: `POST /api/offers/{offerId}/attachments` con `multipart/form-data`, cam
 
 ## Usuarios de demostración
 
-La instalación nueva puede crear el administrador con el correo configurado en `APP_ADMIN_EMAIL` (predeterminado `admin@brp.local`) y la contraseña correspondiente al hash BCrypt suministrado. **No hay una contraseña universal incorporada en este README**.
+La aplicación incluye usuarios de demostración para probar el flujo completo de ofertas. Las cuentas de RADICADOR, ANALISTA y JEFE se crean mediante la migración `013-demo-users.yaml`, habilitada con el contexto Liquibase `demo-users`.
 
-Para demostrar el flujo completo, crea o configura usuarios con los roles `RADICADOR`, `ANALISTA` y `JEFE` desde la administración o mediante el procedimiento de datos de demostración correspondiente. Anota en un canal seguro las contraseñas elegidas para la evaluación; no las publiques en Git.
+| Rol | Correo | Contraseña |
+|---|---|---|
+| ADMINISTRADOR | `admin@brp.local` | `AppAdminPass-1234` |
+| RADICADOR | `demo.radicador@brp.local` | `BRP-Demo-2026!` |
+| ANALISTA | `demo.analista@brp.local` | `BRP-Demo-2026!` |
+| JEFE | `demo.jefe@brp.local` | `BRP-Demo-2026!` |
 
+Estas credenciales son exclusivas de la demostración y no deben utilizarse en producción.
+
+### Inicialización de usuarios
+
+Para crear el administrador y los usuarios de demostración en una base de datos nueva, configurar:
+
+```yaml
+APP_LIQUIBASE_CONTEXTS: bootstrap-admin,demo-users
+```
+
+El administrador inicial se crea mediante `012-initial-admin.yaml`, utilizando el correo configurado en `APP_ADMIN_EMAIL` y el hash BCrypt definido en `APP_ADMIN_PASSWORD_HASH`.
+
+Los otros tres usuarios se crean automáticamente mediante `013-demo-users.yaml`, con sus respectivos roles y módulos.
+
+Los datos se insertan mediante Liquibase y no requieren crear usuarios manualmente desde Angular.</Writing
 ## Pruebas automatizadas
 
 ```powershell

@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 013-demo-users
+      author: jssv
+      context: demo-users
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: |
+              -- Cuentas ficticias exclusivas de la demostracion.
+              -- Password: BRP-Demo-2026! (BCrypt)
+              INSERT INTO usuario (nombre, email, password_hash, activo, rol_id)
+              SELECT v.nombre, v.email,
+                     '$2y$10$tfvtJrcrd2nSW.NEWAje9.5Jk27CGz1muJdDUce/1XrY.AfgBF7.a',
+                     true, r.id
+              FROM (VALUES
+                ('Radicador Demo', 'demo.radicador@brp.local', 'RADICADOR'),
+                ('Analista Demo', 'demo.analista@brp.local', 'ANALISTA'),
+                ('Jefe Demo', 'demo.jefe@brp.local', 'JEFE')
+              ) AS v(nombre, email, rol)
+              JOIN rol r ON r.nombre = v.rol
+              WHERE NOT EXISTS (
+                SELECT 1 FROM usuario u WHERE LOWER(u.email) = LOWER(v.email)
+              );
+
+              INSERT INTO usuario_modulo (usuario_id, modulo_id)
+              SELECT u.id, m.id
+              FROM (VALUES
+                ('demo.radicador@brp.local', 'BRP_CATALOG'),
+                ('demo.radicador@brp.local', 'OFFER_REGISTRATION'),
+                ('demo.radicador@brp.local', 'OFFER_TRACKING'),
+                ('demo.analista@brp.local', 'BRP_CATALOG'),
+                ('demo.analista@brp.local', 'OFFER_MANAGEMENT'),
+                ('demo.analista@brp.local', 'OFFER_TRACKING'),
+                ('demo.jefe@brp.local', 'BRP_CATALOG'),
+                ('demo.jefe@brp.local', 'OFFER_APPROVAL'),
+                ('demo.jefe@brp.local', 'OFFER_TRACKING')
+              ) AS v(email, modulo)
+              JOIN usuario u ON LOWER(u.email) = LOWER(v.email)
+              JOIN modulo m ON m.codigo = v.modulo
+              WHERE NOT EXISTS (
+                SELECT 1 FROM usuario_modulo um
+                WHERE um.usuario_id = u.id AND um.modulo_id = m.id
+              );

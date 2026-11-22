@@ -23,3 +23,5 @@ databaseChangeLog:
       file: db/changelog/changes/011-offer-attachments.yaml
   - include:
       file: db/changelog/changes/012-initial-admin.yaml
+  - include:
+      file: db/changelog/changes/013-demo-users.yaml
