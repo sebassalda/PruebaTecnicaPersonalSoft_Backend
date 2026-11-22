@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-user-email-case-insensitive
+      author: jssv
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: |
+              CREATE UNIQUE INDEX ux_usuario_email_lower
+              ON usuario (LOWER(email));
+      rollback:
+        - sql:
+            dbms: postgresql
+            sql: |
+              DROP INDEX IF EXISTS ux_usuario_email_lower;

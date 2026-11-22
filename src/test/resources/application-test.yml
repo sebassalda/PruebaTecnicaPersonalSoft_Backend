@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/brp_management_test
+    username: brp_user
+    password: brp_dev_password
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+app:
+  jwt:
+    secret: "BRP_TEST_ONLY_JWT_SECRET_2026_ABCDEFGHIJKLMNOPQRSTUVWXYZ_123456789"
+    expiration-minutes: 60
+    issuer: brp-offer-management

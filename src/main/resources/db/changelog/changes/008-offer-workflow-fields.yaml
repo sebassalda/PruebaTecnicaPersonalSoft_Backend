@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008-add-offer-workflow-fields
+      author: jssv
+      changes:
+
+        - addColumn:
+            tableName: oferta
+            columns:
+              - column:
+                  name: analista_id
+                  type: BIGINT
+
+              - column:
+                  name: fecha_actualizacion
+                  type: TIMESTAMP WITH TIME ZONE
+
+              - column:
+                  name: fecha_escalamiento
+                  type: TIMESTAMP WITH TIME ZONE
+
+              - column:
+                  name: fecha_devolucion
+                  type: TIMESTAMP WITH TIME ZONE
+
+              - column:
+                  name: fecha_finalizacion
+                  type: TIMESTAMP WITH TIME ZONE
+
+        - addForeignKeyConstraint:
+            baseTableName: oferta
+            baseColumnNames: analista_id
+            referencedTableName: usuario
+            referencedColumnNames: id
+            constraintName: fk_oferta_analista
+
+        - createIndex:
+            tableName: oferta
+            indexName: idx_oferta_analista
+            columns:
+              - column:
+                  name: analista_id
+
+        - addColumn:
+            tableName: oferente
+            columns:
+              - column:
+                  name: email
+                  type: VARCHAR(150)
+
+              - column:
+                  name: telefono
+                  type: VARCHAR(30)

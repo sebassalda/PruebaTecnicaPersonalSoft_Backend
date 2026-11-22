@@ -1,21 +1,28 @@
 spring:
   application:
     name: brp-offer-management
-
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5433/brp_management}
     username: ${DB_USER:brp_user}
     password: ${DB_PASSWORD:brp_dev_password}
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: validate
     open-in-view: false
-
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
-
+    contexts: ${APP_LIQUIBASE_CONTEXTS:!bootstrap-admin}
+    parameters:
+      adminEmail: ${APP_ADMIN_EMAIL:admin@brp.local}
+      adminPasswordHash: ${APP_ADMIN_PASSWORD_HASH:NOT_CONFIGURED}
 server:
   port: 8080
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET}
+    expiration-minutes: ${APP_JWT_EXPIRATION_MINUTES:60}
+    issuer: brp-offer-management
+  attachments:
+    directory: ${APP_ATTACHMENTS_DIR:./data/attachments}

@@ -1,0 +1,101 @@
+codigo,estado,tipo_brp,matricula_inmobiliaria,placa,departamento,municipio,descripcion,precio,fecha_asignacion_precio,anio_ingesta,mes_ingesta,dia_ingesta
+BRP-0001,DISPONIBLE,APARTAMENTO,001-554854,,Antioquia,Medellín,"Apartamento de 172 m², 4 alcobas, estrato 6. Diagonal 104 # 22-20, barrio Las Acacias, Medellín.",320000000,2026-09-20,2026,11,10
+BRP-0002,DISPONIBLE,CASA,50C-688670,,Cundinamarca,Bogotá,"Casa de 2 pisos y 252 m² construidos, 3 alcobas. Calle 71 # 52-5, barrio San Remo, Bogotá.",580000000,2026-06-12,2026,11,10
+BRP-0003,DISPONIBLE,LOCAL,370-207687,,Valle del Cauca,Cali,"Local comercial de 190 m² con frente sobre vía principal. Diagonal 120 # 7-58, barrio Monteverde, Cali.",410000000,2026-06-06,2026,11,10
+BRP-0004,DISPONIBLE,LOTE,040-703342,,Atlántico,Barranquilla,"Lote urbano de 678 m², uso mixto. Diagonal 28 # 67-18, barrio La Floresta, Barranquilla.",190000000,2026-09-08,2026,11,10
+BRP-0005,EN_TRAMITE_DE_VENTA,APARTAMENTO,50C-206292,,Cundinamarca,Bogotá,"Apartamento de 114 m², 4 alcobas, estrato 6. Transversal 112 # 11-50, barrio Villa Verde, Bogotá.",450000000,2026-07-15,2026,11,10
+BRP-0006,SANEAMIENTO,CASA,001-554562,,Antioquia,Medellín,"Casa de 2 pisos y 214 m² construidos, 5 alcobas. Transversal 37 # 60-23, barrio Altos del Prado, Medellín.",275000000,2026-09-22,2026,11,10
+BRP-0007,DISPONIBLE,VEHICULO,,DGH105,Valle del Cauca,Cali,"Renault Logan 2020, 142.000 km, color negro. Se encuentra en patios de Cali.",68000000,2026-09-25,2026,11,10
+BRP-0008,PENDIENTE_TECNICO,VEHICULO,,FAM966,Antioquia,Medellín,"Nissan Frontier 2018, 147.000 km, color plata. Se encuentra en patios de Medellín.",42000000,2026-08-30,2026,11,10
+BRP-0009,DISPONIBLE,MAQUINARIA,,,Atlántico,Barranquilla,"Compactador Dynapac CA250, año 2009, serial SN5705543. Bodega en Barranquilla.",95000000,2026-10-24,2026,11,10
+BRP-0010,SIN_PRECIO,LOCAL,001-592729,,Antioquia,Medellín,"Local comercial de 79 m² con frente sobre vía principal. Diagonal 38 # 73-35, barrio Monteverde, Medellín.",,,2026,11,10
+BRP-0011,SIN_PRECIO,LOTE,50C-73361,,Cundinamarca,Bogotá,"Lote urbano de 565 m², uso comercial. Calle 56 # 22-14, barrio Monteverde, Bogotá.",,,2026,11,10
+BRP-0012,DADO_DE_BAJA,APARTAMENTO,370-987081,,Valle del Cauca,Cali,"Apartamento de 92 m², 1 alcobas, estrato 6. Avenida 36 # 76-9, barrio Villa Verde, Cali.",210000000,2026-07-12,2026,11,10
+BRP-0013,DISPONIBLE,LOTE,001-26179,,Antioquia,Itagüí,"Lote urbano de 1218 m², uso comercial. Calle 2 # 53-33, barrio El Recreo, Itagüí.",780000000,2026-06-06,2026,11,10
+BRP-0014,DISPONIBLE,LOCAL,50S-991583,,Cundinamarca,Soacha,"Local comercial de 104 m² con frente sobre vía principal. Calle 13 # 88-72, barrio Las Acacias, Soacha.",720000000,2026-09-25,2026,11,10
+BRP-0015,DISPONIBLE,LOCAL,50N-236110,,Cundinamarca,Chía,"Local comercial de 180 m² con frente sobre vía principal. Diagonal 5 # 52-41, barrio Las Acacias, Chía.",1615000000,2026-07-01,2026,11,10
+BRP-0016,DISPONIBLE,VEHICULO,,KMB853,Bolívar,Cartagena,"Nissan Frontier 2020, 72.000 km, color rojo. Se encuentra en patios de Cartagena.",121000000,2026-06-07,2026,11,10
+BRP-0017,PENDIENTE_TECNICO,VEHICULO,,DKP426,Atlántico,Barranquilla,"Toyota Hilux 2023, 92.000 km, color negro. Se encuentra en patios de Barranquilla.",103500000,2026-10-17,2026,11,10
+BRP-0018,DISPONIBLE,APARTAMENTO,50C-138644,,Cundinamarca,Bogotá,"Apartamento de 132 m², 2 alcobas, estrato 6. Calle 93 # 15-21, barrio Las Acacias, Bogotá.",525000000,2026-10-12,2026,11,10
+BRP-0019,DISPONIBLE,LOCAL,060-455403,,Bolívar,Cartagena,"Local comercial de 115 m² con frente sobre vía principal. Diagonal 83 # 84-39, barrio Los Almendros, Cartagena.",1020000000,2026-09-15,2026,11,10
+BRP-0020,EN_TRAMITE_DE_VENTA,CASA,001-579300,,Antioquia,Medellín,"Casa de 2 pisos y 276 m² construidos, 3 alcobas. Transversal 85 # 29-17, barrio La Floresta, Medellín.",725000000,2026-10-17,2026,11,10
+BRP-0021,DISPONIBLE,APARTAMENTO,50C-512103,,Cundinamarca,Bogotá,"Apartamento de 146 m², 3 alcobas, estrato 3. Carrera 3 # 3-36, barrio La Pradera, Bogotá.",765000000,2026-08-20,2026,11,10
+BRP-0022,DISPONIBLE,CASA,300-869689,,Santander,Bucaramanga,"Casa de 3 pisos y 150 m² construidos, 2 alcobas. Carrera 71 # 5-84, barrio La Pradera, Bucaramanga.",540000000,2026-10-12,2026,11,10
+BRP-0023,PENDIENTE_TECNICO,LOTE,100-242614,,Caldas,Manizales,"Lote urbano de 1450 m², uso residencial. Calle 81 # 32-61, barrio Los Almendros, Manizales.",1495000000,2026-09-11,2026,11,10
+BRP-0024,DISPONIBLE,APARTAMENTO,060-491577,,Bolívar,Cartagena,"Apartamento de 137 m², 2 alcobas, estrato 6. Avenida 44 # 26-48, barrio Altos del Prado, Cartagena.",845000000,2026-09-30,2026,11,10
+BRP-0025,DISPONIBLE,APARTAMENTO,290-863282,,Risaralda,Pereira,"Apartamento de 124 m², 2 alcobas, estrato 3. Transversal 20 # 63-1, barrio Altos del Prado, Pereira.",870000000,2026-09-13,2026,11,10
+BRP-0026,EN_TRAMITE_DE_VENTA,APARTAMENTO,370-154662,,Valle del Cauca,Cali,"Apartamento de 54 m², 2 alcobas, estrato 2. Avenida 48 # 70-94, barrio Villa Verde, Cali.",350000000,2026-06-05,2026,11,10
+BRP-0027,DADO_DE_BAJA,LOCAL,50C-610445,,Cundinamarca,Bogotá,"Local comercial de 161 m² con frente sobre vía principal. Carrera 109 # 90-75, barrio Villa Verde, Bogotá.",705000000,2026-09-06,2026,11,10
+BRP-0028,DISPONIBLE,LOTE,50N-778161,,Cundinamarca,Chía,"Lote urbano de 2357 m², uso mixto. Carrera 66 # 14-11, barrio La Floresta, Chía.",4790000000,2026-08-06,2026,11,10
+BRP-0029,DISPONIBLE,VEHICULO,,GFK402,Atlántico,Barranquilla,"Toyota Hilux 2012, 159.000 km, color plata. Se encuentra en patios de Barranquilla.",97500000,2026-07-05,2026,11,10
+BRP-0030,PENDIENTE_TECNICO,APARTAMENTO,040-861578,,Atlántico,Soledad,"Apartamento de 144 m², 2 alcobas, estrato 2. Diagonal 83 # 62-55, barrio Altos del Prado, Soledad.",970000000,2026-10-16,2026,11,10
+BRP-0031,DISPONIBLE,CASA,040-39798,,Atlántico,Barranquilla,"Casa de 3 pisos y 167 m² construidos, 2 alcobas. Carrera 41 # 70-19, barrio La Floresta, Barranquilla.",500000000,2026-06-01,2026,11,10
+BRP-0032,DISPONIBLE,MAQUINARIA,,,Atlántico,Barranquilla,"Montacargas Hyster H50, año 2009, serial SN7173957. Bodega en Barranquilla.",202000000,2026-07-10,2026,11,10
+BRP-0033,PENDIENTE_TECNICO,LOCAL,50S-518103,,Cundinamarca,Soacha,"Local comercial de 178 m² con frente sobre vía principal. Diagonal 32 # 17-14, barrio Altos del Prado, Soacha.",870000000,2026-06-19,2026,11,10
+BRP-0034,DISPONIBLE,VEHICULO,,DMS610,Antioquia,Medellín,"Hyundai Accent 2016, 85.000 km, color plata. Se encuentra en patios de Medellín.",41000000,2026-08-03,2026,11,10
+BRP-0035,DISPONIBLE,APARTAMENTO,370-825751,,Valle del Cauca,Cali,"Apartamento de 136 m², 4 alcobas, estrato 6. Avenida 11 # 9-12, barrio Campo Alegre, Cali.",655000000,2026-07-28,2026,11,10
+BRP-0036,DISPONIBLE,LOCAL,040-348368,,Atlántico,Barranquilla,"Local comercial de 68 m² con frente sobre vía principal. Avenida 56 # 65-72, barrio Altos del Prado, Barranquilla.",555000000,2026-07-16,2026,11,10
+BRP-0037,DISPONIBLE,VEHICULO,,MMP951,Bolívar,Cartagena,"Kia Picanto 2019, 64.000 km, color plata. Se encuentra en patios de Cartagena.",133000000,2026-07-25,2026,11,10
+BRP-0038,DISPONIBLE,MAQUINARIA,,,Atlántico,Barranquilla,"Excavadora Komatsu PC200, año 2015, serial SN3140504. Bodega en Barranquilla.",272000000,2026-07-01,2026,11,10
+BRP-0039,DISPONIBLE,VEHICULO,,EUX374,Cundinamarca,Chía,"Nissan Frontier 2016, 121.000 km, color negro. Se encuentra en patios de Chía.",56500000,2026-07-07,2026,11,10
+BRP-0040,DISPONIBLE,MAQUINARIA,,,Caldas,Manizales,"Minicargador Bobcat S650, año 2012, serial SN5923599. Bodega en Manizales.",348000000,2026-09-11,2026,11,10
+BRP-0041,SANEAMIENTO,CASA,50C-962675,,Cundinamarca,Bogotá,"Casa de 1 pisos y 284 m² construidos, 4 alcobas. Transversal 44 # 13-87, barrio Campo Alegre, Bogotá.",1520000000,2026-10-18,2026,11,10
+BRP-0042,EN_TRAMITE_DE_VENTA,LOTE,290-977721,,Risaralda,Pereira,"Lote urbano de 2266 m², uso residencial. Transversal 46 # 83-43, barrio Los Almendros, Pereira.",4705000000,2026-06-03,2026,11,10
+BRP-0043,DISPONIBLE,MAQUINARIA,,,Cundinamarca,Bogotá,"Planta eléctrica Cummins C150, año 2016, serial SN5230777. Bodega en Bogotá.",110000000,2026-11-04,2026,11,10
+BRP-0044,EN_TRAMITE_DE_VENTA,APARTAMENTO,040-677177,,Atlántico,Barranquilla,"Apartamento de 151 m², 4 alcobas, estrato 5. Avenida 2 # 5-97, barrio San Remo, Barranquilla.",605000000,2026-08-08,2026,11,10
+BRP-0045,DISPONIBLE,CASA,378-397379,,Valle del Cauca,Palmira,"Casa de 1 pisos y 247 m² construidos, 3 alcobas. Transversal 66 # 36-80, barrio Monteverde, Palmira.",,,2026,11,10
+BRP-0046,DADO_DE_BAJA,LOTE,290-173396,,Risaralda,Pereira,"Lote urbano de 2426 m², uso mixto. Carrera 69 # 99-2, barrio El Mirador, Pereira.",4330000000,2026-09-27,2026,11,10
+BRP-0047,DISPONIBLE,LOCAL,50S-98376,,Cundinamarca,Soacha,"Local comercial de 77 m² con frente sobre vía principal. Diagonal 87 # 22-91, barrio Villa Verde, Soacha.",675000000,2026-10-12,2026,11,10
+BRP-0048,DADO_DE_BAJA,CASA,300-779917,,Santander,Bucaramanga,"Casa de 1 pisos y 148 m² construidos, 2 alcobas. Avenida 54 # 6-24, barrio La Pradera, Bucaramanga.",690000000,2026-09-29,2026,11,10
+BRP-0049,DISPONIBLE,LOCAL,370-512993,,Valle del Cauca,Cali,"Local comercial de 193 m² con frente sobre vía principal. Avenida 44 # 45-41, barrio Las Acacias, Cali.",1185000000,2026-08-23,2026,11,10
+BRP-0050,DISPONIBLE,CASA,50C-887151,,Cundinamarca,Bogotá,"Casa de 1 pisos y 208 m² construidos, 5 alcobas. Carrera 3 # 62-47, barrio Villa Verde, Bogotá.",925000000,2026-08-10,2026,11,10
+BRP-0051,EN_TRAMITE_DE_VENTA,CASA,060-914851,,Bolívar,Cartagena,"Casa de 3 pisos y 342 m² construidos, 5 alcobas. Avenida 28 # 75-7, barrio El Recreo, Cartagena.",950000000,2026-10-09,2026,11,10
+BRP-0052,SANEAMIENTO,MAQUINARIA,,,Cundinamarca,Bogotá,"Planta eléctrica Cummins C150, año 2015, serial SN2522000. Bodega en Bogotá.",,,2026,11,10
+BRP-0053,PENDIENTE_TECNICO,APARTAMENTO,300-91860,,Santander,Bucaramanga,"Apartamento de 178 m², 3 alcobas, estrato 5. Avenida 85 # 44-47, barrio La Floresta, Bucaramanga.",1045000000,2026-07-15,2026,11,10
+BRP-0054,DISPONIBLE,VEHICULO,,XDW319,Antioquia,Medellín,"Toyota Hilux 2020, 141.000 km, color rojo. Se encuentra en patios de Medellín.",29000000,2026-07-24,2026,11,10
+BRP-0055,SANEAMIENTO,LOCAL,040-231541,,Atlántico,Barranquilla,"Local comercial de 134 m² con frente sobre vía principal. Diagonal 110 # 68-17, barrio La Pradera, Barranquilla.",840000000,2026-10-04,2026,11,10
+BRP-0056,DISPONIBLE,APARTAMENTO,001-208236,,Antioquia,Itagüí,"Apartamento de 79 m², 3 alcobas, estrato 4. Transversal 69 # 79-93, barrio La Pradera, Itagüí.",325000000,2026-07-10,2026,11,10
+BRP-0057,EN_TRAMITE_DE_VENTA,CASA,060-290555,,Bolívar,Cartagena,"Casa de 1 pisos y 153 m² construidos, 2 alcobas. Calle 36 # 39-23, barrio La Floresta, Cartagena.",730000000,2026-07-03,2026,11,10
+BRP-0058,EN_TRAMITE_DE_VENTA,VEHICULO,,BFY257,Antioquia,Rionegro,"Chevrolet Onix 2014, 55.000 km, color plata. Se encuentra en patios de Rionegro.",80500000,2026-10-04,2026,11,10
+BRP-0059,DISPONIBLE,APARTAMENTO,50C-723445,,Cundinamarca,Bogotá,"Apartamento de 52 m², 3 alcobas, estrato 3. Diagonal 47 # 70-12, barrio Campo Alegre, Bogotá.",345000000,2026-08-23,2026,11,10
+BRP-0060,EN_TRAMITE_DE_VENTA,CASA,001-624475,,Antioquia,Medellín,"Casa de 3 pisos y 154 m² construidos, 2 alcobas. Transversal 1 # 8-13, barrio Altos del Prado, Medellín.",840000000,2026-08-05,2026,11,10
+BRP-0061,SANEAMIENTO,CASA,001-464171,,Antioquia,Medellín,"Casa de 1 pisos y 248 m² construidos, 3 alcobas. Diagonal 25 # 12-55, barrio Monteverde, Medellín.",825000000,2026-07-14,2026,11,10
+BRP-0062,DISPONIBLE,APARTAMENTO,001-766138,,Antioquia,Itagüí,"Apartamento de 106 m², 2 alcobas, estrato 5. Carrera 48 # 21-69, barrio El Recreo, Itagüí.",560000000,2026-09-01,2026,11,10
+BRP-0063,DISPONIBLE,APARTAMENTO,50C-784952,,Cundinamarca,Bogotá,"Apartamento de 98 m², 3 alcobas, estrato 5. Diagonal 78 # 62-12, barrio San Remo, Bogotá.",425000000,2026-06-21,2026,11,10
+BRP-0064,DISPONIBLE,LOCAL,370-223456,,Valle del Cauca,Jamundí,"Local comercial de 115 m² con frente sobre vía principal. Diagonal 89 # 21-15, barrio La Floresta, Jamundí.",,,2026,11,10
+BRP-0065,DISPONIBLE,APARTAMENTO,370-311063,,Valle del Cauca,Cali,"Apartamento de 93 m², 4 alcobas, estrato 2. Diagonal 19 # 83-82, barrio Villa Verde, Cali.",615000000,2026-06-03,2026,11,10
+BRP-0066,DISPONIBLE,VEHICULO,,MSE210,Antioquia,Medellín,"Chevrolet Onix 2020, 125.000 km, color negro. Se encuentra en patios de Medellín.",131500000,2026-07-27,2026,11,10
+BRP-0067,DISPONIBLE,CASA,50S-712568,,Cundinamarca,Soacha,"Casa de 2 pisos y 263 m² construidos, 5 alcobas. Diagonal 82 # 76-7, barrio Prados del Norte, Soacha.",1275000000,2026-08-05,2026,11,10
+BRP-0068,SANEAMIENTO,LOCAL,001-876074,,Antioquia,Itagüí,"Local comercial de 199 m² con frente sobre vía principal. Calle 60 # 60-45, barrio La Pradera, Itagüí.",1675000000,2026-06-26,2026,11,10
+BRP-0069,DISPONIBLE,CASA,290-977375,,Risaralda,Pereira,"Casa de 2 pisos y 221 m² construidos, 2 alcobas. Calle 76 # 6-9, barrio La Pradera, Pereira.",970000000,2026-09-07,2026,11,10
+BRP-0070,PENDIENTE_TECNICO,LOCAL,300-33033,,Santander,Bucaramanga,"Local comercial de 190 m² con frente sobre vía principal. Diagonal 59 # 79-62, barrio La Pradera, Bucaramanga.",1005000000,2026-07-05,2026,11,10
+BRP-0071,EN_TRAMITE_DE_VENTA,LOTE,50N-29121,,Cundinamarca,Chía,"Lote urbano de 258 m², uso residencial. Transversal 12 # 22-69, barrio Villa Verde, Chía.",155000000,2026-06-19,2026,11,17
+BRP-0072,EN_TRAMITE_DE_VENTA,CASA,290-761791,,Risaralda,Pereira,"Casa de 1 pisos y 346 m² construidos, 4 alcobas. Carrera 40 # 61-31, barrio Altos del Prado, Pereira.",1545000000,2026-09-11,2026,11,17
+BRP-0073,SIN_PRECIO,APARTAMENTO,001-469824,,Antioquia,Itagüí,"Apartamento de 106 m², 3 alcobas, estrato 5. Calle 63 # 32-77, barrio La Floresta, Itagüí.",,,2026,11,17
+BRP-0074,DISPONIBLE,CASA,040-533192,,Atlántico,Barranquilla,"Casa de 3 pisos y 138 m² construidos, 5 alcobas. Diagonal 49 # 62-68, barrio Los Almendros, Barranquilla.",470000000,2026-06-09,2026,11,17
+BRP-0075,DISPONIBLE,MAQUINARIA,,,Antioquia,Medellín,"Compresor Atlas Copco GA55, año 2020, serial SN3353643. Bodega en Medellín.",198000000,2026-10-12,2026,11,17
+BRP-0076,DISPONIBLE,MAQUINARIA,,,Antioquia,Rionegro,"Montacargas Hyster H50, año 2012, serial SN8242884. Bodega en Rionegro.",435000000,2026-08-30,2026,11,17
+BRP-0077,DISPONIBLE,VEHICULO,,DVM925,Cundinamarca,Chía,"Suzuki Swift 2020, 50.000 km, color azul. Se encuentra en patios de Chía.",54000000,2026-10-20,2026,11,17
+BRP-0078,DISPONIBLE,APARTAMENTO,370-16051,,Valle del Cauca,Cali,"Apartamento de 88 m², 4 alcobas, estrato 5. Calle 103 # 14-54, barrio El Recreo, Cali.",400000000,2026-08-07,2026,11,17
+BRP-0079,DISPONIBLE,LOTE,040-185773,,Atlántico,Barranquilla,"Lote urbano de 842 m², uso mixto. Avenida 117 # 48-11, barrio Villa Verde, Barranquilla.",465000000,2026-11-09,2026,11,17
+BRP-0080,DISPONIBLE,APARTAMENTO,50C-671106,,Cundinamarca,Bogotá,"Apartamento de 74 m², 4 alcobas, estrato 6. Calle 46 # 89-60, barrio La Pradera, Bogotá.",550000000,2026-07-19,2026,11,17
+BRP-0081,DISPONIBLE,CASA,001-224538,,Antioquia,Medellín,"Casa de 1 pisos y 326 m² construidos, 4 alcobas. Calle 22 # 84-9, barrio Villa Verde, Medellín.",825000000,2026-11-13,2026,11,17
+BRP-0082,SIN_PRECIO,APARTAMENTO,040-185737,,Atlántico,Soledad,"Apartamento de 56 m², 4 alcobas, estrato 4. Calle 114 # 90-94, barrio La Pradera, Soledad.",,,2026,11,17
+BRP-0083,DISPONIBLE,APARTAMENTO,020-422069,,Antioquia,Rionegro,"Apartamento de 177 m², 2 alcobas, estrato 5. Calle 70 # 46-30, barrio La Pradera, Rionegro.",965000000,2026-06-09,2026,11,17
+BRP-0084,DISPONIBLE,APARTAMENTO,001-197139,,Antioquia,Envigado,"Apartamento de 48 m², 4 alcobas, estrato 5. Diagonal 12 # 57-87, barrio Las Acacias, Envigado.",,,2026,11,17
+BRP-0085,DISPONIBLE,CASA,370-687527,,Valle del Cauca,Cali,"Casa de 1 pisos y 201 m² construidos, 3 alcobas. Diagonal 97 # 44-52, barrio Villa Verde, Cali.",1055000000,2026-06-24,2026,11,17
+BRP-0086,SANEAMIENTO,LOTE,50C-914579,,Cundinamarca,Bogotá,"Lote urbano de 227 m², uso comercial. Calle 96 # 97-17, barrio Las Acacias, Bogotá.",320000000,2026-09-30,2026,11,17
+BRP-0087,SANEAMIENTO,LOTE,060-155423,,Bolívar,Cartagena,"Lote urbano de 760 m², uso mixto. Avenida 23 # 64-71, barrio El Mirador, Cartagena.",310000000,2026-06-23,2026,11,17
+BRP-0088,EN_TRAMITE_DE_VENTA,VEHICULO,,VLT464,Valle del Cauca,Cali,"Chevrolet Onix 2022, 115.000 km, color plata. Se encuentra en patios de Cali.",36000000,2026-10-30,2026,11,17
+BRP-0089,EN_TRAMITE_DE_VENTA,VEHICULO,,DNH411,Risaralda,Pereira,"Chevrolet Spark GT 2022, 72.000 km, color gris. Se encuentra en patios de Pereira.",105000000,2026-10-24,2026,11,17
+BRP-0090,DISPONIBLE,LOTE,370-194046,,Valle del Cauca,Cali,"Lote urbano de 885 m², uso comercial. Diagonal 2 # 4-44, barrio Prados del Norte, Cali.",2055000000,2026-08-02,2026,11,17
+BRP-0091,DISPONIBLE,VEHICULO,,SDC230,Antioquia,Medellín,"Chevrolet Onix 2014, 136.000 km, color plata. Se encuentra en patios de Medellín.",25500000,2026-08-19,2026,11,17
+BRP-0092,DISPONIBLE,MAQUINARIA,,,Bolívar,Cartagena,"Excavadora Komatsu PC200, año 2014, serial SN5228749. Bodega en Cartagena.",51000000,2026-08-15,2026,11,17
+BRP-0093,DISPONIBLE,VEHICULO,,VDD332,Cundinamarca,Soacha,"Mazda 2 2018, 9.000 km, color rojo. Se encuentra en patios de Soacha.",136500000,2026-06-18,2026,11,17
+BRP-0094,DISPONIBLE,CASA,290-785558,,Risaralda,Pereira,"Casa de 2 pisos y 277 m² construidos, 5 alcobas. Transversal 94 # 39-33, barrio Campo Alegre, Pereira.",1415000000,2026-08-15,2026,11,17
+BRP-0095,EN_TRAMITE_DE_VENTA,APARTAMENTO,290-743011,,Risaralda,Pereira,"Apartamento de 125 m², 2 alcobas, estrato 2. Diagonal 71 # 4-27, barrio San Remo, Pereira.",590000000,2026-09-12,2026,11,17
+BRP-0096,SANEAMIENTO,MAQUINARIA,,,Antioquia,Medellín,"Compactador Dynapac CA250, año 2021, serial SN6459827. Bodega en Medellín.",129000000,2026-07-29,2026,11,17
+BRP-0097,DISPONIBLE,VEHICULO,,UNG731,Atlántico,Barranquilla,"Hyundai Accent 2014, 93.000 km, color plata. Se encuentra en patios de Barranquilla.",98500000,2026-10-17,2026,11,17
+BRP-0098,PENDIENTE_TECNICO,VEHICULO,,RHF620,Cundinamarca,Chía,"Renault Duster 2018, 75.000 km, color negro. Se encuentra en patios de Chía.",,,2026,11,17
+BRP-0099,SIN_PRECIO,LOCAL,040-898904,,Atlántico,Barranquilla,"Local comercial de 34 m² con frente sobre vía principal. Diagonal 106 # 26-39, barrio La Floresta, Barranquilla.",,,2026,11,17
+BRP-0100,SANEAMIENTO,APARTAMENTO,300-783743,,Santander,Bucaramanga,"Apartamento de 77 m², 4 alcobas, estrato 5. Transversal 88 # 8-79, barrio Villa Verde, Bucaramanga.",280000000,2026-10-10,2026,11,17

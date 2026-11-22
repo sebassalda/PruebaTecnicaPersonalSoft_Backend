@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-insert-security-catalogs
+      author: jssv
+      changes:
+        - insert:
+            tableName: rol
+            columns:
+              - column: { name: nombre, value: ADMINISTRADOR }
+
+        - insert:
+            tableName: rol
+            columns:
+              - column: { name: nombre, value: RADICADOR }
+
+        - insert:
+            tableName: rol
+            columns:
+              - column: { name: nombre, value: ANALISTA }
+
+        - insert:
+            tableName: rol
+            columns:
+              - column: { name: nombre, value: JEFE }
+
+        - insert:
+            tableName: modulo
+            columns:
+              - column: { name: codigo, value: BRP_CATALOG }
+              - column: { name: nombre, value: Catálogo BRP }
+
+        - insert:
+            tableName: modulo
+            columns:
+              - column: { name: codigo, value: OFFER_REGISTRATION }
+              - column: { name: nombre, value: Radicación de ofertas }
+
+        - insert:
+            tableName: modulo
+            columns:
+              - column: { name: codigo, value: OFFER_MANAGEMENT }
+              - column: { name: nombre, value: Gestión de ofertas }
+
+        - insert:
+            tableName: modulo
+            columns:
+              - column: { name: codigo, value: OFFER_APPROVAL }
+              - column: { name: nombre, value: Aprobación de ofertas }
+
+        - insert:
+            tableName: modulo
+            columns:
+              - column: { name: codigo, value: USER_MANAGEMENT }
+              - column: { name: nombre, value: Administración de usuarios }
